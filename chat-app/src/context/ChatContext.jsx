@@ -39,6 +39,22 @@ export function ChatProvider({ children }) {
     }));
   };
 
+  const editMessage = (contactId, index, newText) => {
+    setMessages((prev) => {
+        const updated = [...prev[contactId]];
+        updated[index] = {
+            ...updated[index],
+            text: newText,
+            edited: true,
+        };
+
+        return {
+            ...prev,
+            [contactId]: updated,
+        };
+    });
+  };
+
   const addBotReply = (contactId) => {
     const replies = ["OK!", "Ciekawe!", "Haha", "No nie wiem...", "Dobra!"];
     const random = replies[Math.floor(Math.random() * replies.length)];
@@ -70,6 +86,7 @@ export function ChatProvider({ children }) {
         addMessage,
         addBotReply,
         addContact,
+        editMessage,
       }}
     >
       {children}
