@@ -34,9 +34,10 @@ export default function Conversation() {
         {msgs.map((m, index) => (
           <div
             key={index}
-            style={{ textAlign: m.from === "me" ? "right" : "left", marginBottom: "8px" }}
+            className = {`message ${m.from === "me" ? "mine" : "bot"}`}
+            onClick = {() => m.from === "me" && handleEdit(index, m.text)}
           >
-            {editIndex === index && m.from === "me" ? (
+            {editIndex === index ? (
               <>
                 <input
                   type="text"
@@ -46,12 +47,7 @@ export default function Conversation() {
                 <button onClick={() => saveEdit(index)}>OK</button>
               </>
             ) : (
-              <span
-                onClick={() => m.from === "me" && handleEdit(index, m.text)}
-                style={{ cursor: m.from === "me" ? "pointer" : "default" }}
-              >
-                {m.text}
-              </span>
+              m.text
             )}
 
             {settings.showTime && <small> {m.time}</small>}
