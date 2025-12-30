@@ -1,6 +1,8 @@
 import MessageInput from "./MessageInput";
 import { useState } from "react";
 import { useChatContext } from "../context/ChatContext";
+import StatusSelect from "./StatusSelect";
+import SettingsPanel from "./SettingsPanel";
 
 export default function Conversation() {
   const { contacts, currentContact, messages, settings, editMessage } = useChatContext();
@@ -24,7 +26,10 @@ export default function Conversation() {
 
   return (
     <div>
-      <h3>Rozmowa z: {contact?.name}</h3>
+      <h3 style = {{display: "flex", justifyContent: "space-between"}}>
+        <span>Rozmowa z: ${contact?.name}</span>
+        <StatusSelect />
+      </h3>
       <div style={{ height: "80vh", overflowY: "auto", border: "1px solid #ccc" }}>
         {msgs.map((m, index) => (
           <div
@@ -54,7 +59,8 @@ export default function Conversation() {
           </div>
         ))}
       </div>
-
+      <SettingsPanel />
+    
       <MessageInput />
     </div>
   );
