@@ -46,7 +46,14 @@ export default function Conversation() {
                     value={editText}
                     onChange={(e) => setEditText(e.target.value)}
                   />
-                  <button onClick={() => saveEdit(index)}>OK</button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      saveEdit(index);
+                    }}
+                  >
+                    OK
+                  </button>
                 </>
               ) : (
                 <span>{m.text}</span>

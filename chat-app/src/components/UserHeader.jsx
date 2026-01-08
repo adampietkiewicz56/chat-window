@@ -1,4 +1,6 @@
 import { useChatContext } from "../context/ChatContext";
+import StatusSelect from "./StatusSelect";
+
 
 export default function UserHeader() {
   const { user, setUser } = useChatContext();
@@ -9,14 +11,7 @@ export default function UserHeader() {
 
       <div className="details">
         <strong>{user.name}</strong>
-        <select
-          className="status-select"
-          value={user.status}
-          onChange={(e) => setUser({ ...user, status: e.target.value })}
-        >
-          <option value="Dostępny">Dostępny</option>
-          <option value="Zaraz wracam">Zaraz wracam</option>
-        </select>
+        <StatusSelect/>
       </div>
     </div>
   );
