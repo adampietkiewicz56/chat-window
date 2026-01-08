@@ -5,44 +5,41 @@ export default function MessageInput() {
   const { currentContact, addMessage, addBotReply } = useChatContext();
   const [text, setText] = useState("");
 
-  const emojis = ["😀", "😂", "😎", "❤️", "👍"];
+  const emojis = ["😊", "😂", "❤️", "👍", "🔥"];
 
   const send = (e) => {
     e.preventDefault();
     if (!text.trim()) return;
+
     addMessage(currentContact, text);
     addBotReply(currentContact);
+
     setText("");
   };
 
-  const addEmoji = (emoji) => {
-    setText((prev) => prev + emoji);
-  };
-
   return (
-    <form onSubmit={send} style={{ display: "flex", flexDirection: "column" }}>
-      <div style={{ marginBottom: "5px" }}>
+    <form onSubmit={send}>
+      <div className="emojis">
         {emojis.map((emoji) => (
           <button
             type="button"
             key={emoji}
-            onClick={() => addEmoji(emoji)}
-            style={{ marginRight: "5px" }}
+            className="emoji-btn"
+            onClick={() => setText((prev) => prev + emoji)}
           >
             {emoji}
           </button>
         ))}
       </div>
 
-      <div style={{ display: "flex" }}>
+      <div className="message-input-container">
         <input
           type="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Napisz wiadomość..."
-          style={{ flex: 1 }}
         />
-        <button type="submit">Wyślij</button>
+        <button className="send-btn">Wyślij</button>
       </div>
     </form>
   );

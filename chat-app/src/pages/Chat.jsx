@@ -1,15 +1,19 @@
-import ContactList from "../components/ContactList"
-import Conversation from "../components/Conversation"
+import ContactList from "../components/ContactList";
+import Conversation from "../components/Conversation";
+import UserHeader from "../components/UserHeader";
 
 export default function Chat() {
-    return (
-        <div style={{display: "flex", height: "100vh"}}>
-            <div style={{width: "30%", borderRight: "1px solid #ccc" }}>
-                <ContactList />
-            </div>
-            <div style={{ width: "70%" }}>
-                <Conversation />
-            </div>
+  return (
+    <div className="chat-container">
+      <UserHeader />
+      <div className="chat-content">
+        <div className="sidebar">
+          <ContactList />
         </div>
-    );
+        <div className="chat-panel">
+          <Conversation />
+        </div>
+      </div>
+    </div>
+  );
 }

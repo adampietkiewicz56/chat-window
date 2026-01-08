@@ -1,22 +1,18 @@
 import { useChatContext } from "../context/ChatContext";
 
 export default function SettingsPanel() {
-    const { settings, setSettings } = useChatContext();
+  const { settings, setSettings } = useChatContext();
 
-    const toggleShowTime = () => {
-        setSettings({ ...settings, showTime: !settings.showTime });
-    };
-
-    return (
-        <div style={{ marginBottom: "10px" }}>
-            <label>
-                <input 
-                    type="checkbox"
-                    checked={settings.showTime}
-                    onChange={toggleShowTime}
-                />
-                Pokaż godzinę wysłania
-            </label>
-        </div>
-    )
+  return (
+    <div className="settings-toggle">
+      <input
+        type="checkbox"
+        checked={settings.showTime}
+        onChange={(e) =>
+          setSettings({ ...settings, showTime: e.target.checked })
+        }
+      />
+      <label>Pokaż godzinę wysłania</label>
+    </div>
+  );
 }

@@ -8,7 +8,10 @@ export default function StatusSelect() {
     };
 
     return (
-        <select value={user.status} onChange={handleChange}>
+        <select 
+        className="status-select"
+        value={user.status}
+        onChange={(e) => setUser({ ...user, status: e.target.value })}>
             <option value = "Dostępny">Dostępny</option>
             <option value = "Zaraz wracam">Zaraz wracam</option>
             <option value = "Niedostępny">Niedostępny</option>

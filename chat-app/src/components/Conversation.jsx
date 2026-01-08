@@ -1,7 +1,6 @@
 import MessageInput from "./MessageInput";
 import { useState } from "react";
 import { useChatContext } from "../context/ChatContext";
-import StatusSelect from "./StatusSelect";
 import SettingsPanel from "./SettingsPanel";
 
 export default function Conversation() {
@@ -25,38 +24,42 @@ export default function Conversation() {
   };
 
   return (
-    <div>
-      <h3 style = {{display: "flex", justifyContent: "space-between"}}>
-        <span>Rozmowa z: ${contact?.name}</span>
-        <StatusSelect />
+    <div className="conversation">
+      <h3 className="conversation-header">
+        Rozmowa z: {contact?.name}
       </h3>
-      <div style={{ height: "80vh", overflowY: "auto", border: "1px solid #ccc" }}>
+
+      <div className="messages">
         {msgs.map((m, index) => (
           <div
             key={index}
-            className = {`message ${m.from === "me" ? "mine" : "bot"}`}
-            onClick = {() => m.from === "me" && handleEdit(index, m.text)}
+            className={`message-container ${m.from === "me" ? "mine" : "bot"}`}
           >
-            {editIndex === index ? (
-              <>
-                <input
-                  type="text"
-                  value={editText}
-                  onChange={(e) => setEditText(e.target.value)}
-                />
-                <button onClick={() => saveEdit(index)}>OK</button>
-              </>
-            ) : (
-              m.text
-            )}
+            <div
+              className="message-bubble"
+              onClick={() => m.from === "me" && handleEdit(index, m.text)}
+            >
+              {editIndex === index && m.from === "me" ? (
+                <>
+                  <input
+                    type="text"
+                    value={editText}
+                    onChange={(e) => setEditText(e.target.value)}
+                  />
+                  <button onClick={() => saveEdit(index)}>OK</button>
+                </>
+              ) : (
+                <span>{m.text}</span>
+              )}
+            </div>
 
-            {settings.showTime && <small> {m.time}</small>}
+            {settings.showTime && <small>{m.time}</small>}
             {m.edited && <small> (edytowano)</small>}
           </div>
         ))}
       </div>
+
       <SettingsPanel />
-    
       <MessageInput />
     </div>
   );
