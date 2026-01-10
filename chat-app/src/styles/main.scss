@@ -159,6 +159,8 @@ body {
   z-index: 1000;
 }
 
+
+
 .avatar {
   width: 36px;
   height: 36px;
@@ -365,4 +367,94 @@ body {
 .emoji-btn:hover {
   transform: scale(1.15);
   background: $accent-light;
+}
+
+
+// ==LOGOUT==
+.logout-btn {
+  margin-top: 4px;
+  font-size: 12px;
+  background: none;
+  border: none;
+  color: $accent;
+  cursor: pointer;
+  padding: 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+
+
+
+// WELCOME PAGE
+
+/* ===== WELCOME PAGE ===== */
+
+.welcome-page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $bg;
+}
+
+.welcome-card {
+  width: 100%;
+  max-width: 360px;
+  background: #ffffff;
+  padding: 28px 24px;
+  border-radius: 18px;
+  border: 1px solid $border;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+.welcome-card h1 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: $text-dark;
+}
+
+.welcome-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.welcome-card input {
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid $border;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.welcome-card input:focus {
+  border-color: $accent;
+}
+
+.welcome-card button {
+  margin-top: 4px;
+  padding: 12px;
+  border-radius: 14px;
+  border: none;
+  background: $accent;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.welcome-card button:hover {
+  background: darken($accent, 8%);
+}
+
+.welcome-card button:active {
+  transform: scale(0.97);
 }

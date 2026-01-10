@@ -3,9 +3,12 @@ import { createContext, useContext, useState } from "react";
 const ChatContext = createContext();
 
 export function ChatProvider({ children }) {
-  const [user, setUser] = useState({
-    name: localStorage.getItem("username") || "Anonim",
-    status: "Dostępny",
+  // ✅ USER: null = niezalogowany
+  const [user, setUser] = useState(() => {
+    const storedName = localStorage.getItem("username");
+    return storedName
+      ? { name: storedName, status: "Dostępny" }
+      : null;
   });
 
   const [settings, setSettings] = useState({
@@ -41,17 +44,17 @@ export function ChatProvider({ children }) {
 
   const editMessage = (contactId, index, newText) => {
     setMessages((prev) => {
-        const updated = [...prev[contactId]];
-        updated[index] = {
-            ...updated[index],
-            text: newText,
-            edited: true,
-        };
+      const updated = [...prev[contactId]];
+      updated[index] = {
+        ...updated[index],
+        text: newText,
+        edited: true,
+      };
 
-        return {
-            ...prev,
-            [contactId]: updated,
-        };
+      return {
+        ...prev,
+        [contactId]: updated,
+      };
     });
   };
 
@@ -71,11 +74,18 @@ export function ChatProvider({ children }) {
     }, 2000);
   };
 
+  // ✅ czytelne wylogowanie
+  const logout = () => {
+    localStorage.removeItem("username");
+    setUser(null);
+  };
+
   return (
     <ChatContext.Provider
       value={{
         user,
         setUser,
+        logout,
         settings,
         setSettings,
         contacts,

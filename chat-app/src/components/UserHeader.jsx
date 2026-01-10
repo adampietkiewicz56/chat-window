@@ -3,7 +3,12 @@ import StatusSelect from "./StatusSelect";
 
 
 export default function UserHeader() {
-  const { user, setUser } = useChatContext();
+  const { user } = useChatContext();
+
+  const logout = () => {
+    localStorage.removeItem("username");
+    window.location.reload();
+  };
 
   return (
     <div className="user-header">
@@ -12,6 +17,9 @@ export default function UserHeader() {
       <div className="details">
         <strong>{user.name}</strong>
         <StatusSelect/>
+        <button onClick={logout} className="logout-btn">
+          Wyloguj
+        </button>
       </div>
     </div>
   );
