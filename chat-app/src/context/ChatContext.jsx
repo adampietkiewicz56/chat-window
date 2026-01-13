@@ -74,7 +74,7 @@ export function ChatProvider({ children }) {
     }, 2000);
   };
 
-  // ✅ czytelne wylogowanie
+  // Logout
   const logout = () => {
     localStorage.removeItem("username");
     setUser(null);
