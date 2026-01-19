@@ -1,0 +1,22 @@
+@import "./variables.scss";
+
+/* ===== GLOBAL ===== */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: $bg;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ===== ERROR ===== */
+.error {
+  color: #e74c3c;
+  font-size: 13px;
+  margin-top: 6px;
+}

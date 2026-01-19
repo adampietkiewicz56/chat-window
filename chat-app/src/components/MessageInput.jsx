@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useChatContext } from "../context/ChatContext";
+import EmojiPicker from "./EmojiPicker";
 
 export default function MessageInput() {
   const { currentContact, addMessage, addBotReply } = useChatContext();
   const [text, setText] = useState("");
   const [error, setError] = useState("");
-
-  const emojis = ["😊", "😂", "❤️", "👍", "🔥"];
 
   const send = (e) => {
     e.preventDefault();
@@ -21,19 +20,14 @@ export default function MessageInput() {
     setText("");
   };
 
+  const handleEmojiSelect = (emoji) => {
+    setText((prev) => prev + emoji);
+  };
+
   return (
-    <form onSubmit={send}>
-      <div className="emojis">
-        {emojis.map((emoji) => (
-          <button
-            type="button"
-            key={emoji}
-            className="emoji-btn"
-            onClick={() => setText((prev) => prev + emoji)}
-          >
-            {emoji}
-          </button>
-        ))}
+    <form className="message-input-form" onSubmit={send}>
+      <div className="emoji-picker-wrapper">
+        <EmojiPicker onEmojiSelect={handleEmojiSelect} />
       </div>
 
       <div className="message-input-container">

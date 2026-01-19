@@ -1,22 +1,18 @@
-import { useChatContext } from "../context/ChatContext";
+import { useUser } from "../hooks/useUser";
 import StatusSelect from "./StatusSelect";
 
-
 export default function UserHeader() {
-  const { user } = useChatContext();
+  const { user, logout } = useUser();
 
-  const logout = () => {
-    localStorage.removeItem("username");
-    window.location.reload();
-  };
+  if (!user) return null;
 
   return (
     <div className="user-header">
-      <div className="avatar">{user.name[0]}</div>
+      <div className="avatar">{user.initials}</div>
 
       <div className="details">
         <strong>{user.name}</strong>
-        <StatusSelect/>
+        <StatusSelect />
         <button onClick={logout} className="logout-btn">
           Wyloguj
         </button>

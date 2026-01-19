@@ -1,0 +1,68 @@
+@import "./variables.scss";
+
+/* ===== WELCOME PAGE ===== */
+.welcome-page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $bg;
+}
+
+.welcome-card {
+  width: 100%;
+  max-width: 360px;
+  background: #ffffff;
+  padding: 28px 24px;
+  border-radius: 18px;
+  border: 1px solid $border;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  text-align: center;
+
+  h1 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: $text-dark;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  input {
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 1px solid $border;
+    font-size: 14px;
+    outline: none;
+    transition: border $transition;
+
+    &:focus {
+      border-color: $accent;
+    }
+  }
+
+  button {
+    margin-top: 4px;
+    padding: 12px;
+    border-radius: 14px;
+    border: none;
+    background: $accent;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background $transition, transform 0.1s;
+
+    &:hover {
+      background: darken($accent, 8%);
+    }
+
+    &:active {
+      transform: scale(0.97);
+    }
+  }
+}

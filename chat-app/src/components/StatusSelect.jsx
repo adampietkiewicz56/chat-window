@@ -1,23 +1,26 @@
-import { useChatContext } from "../context/ChatContext";
+import { useUser } from "../hooks/useUser";
 
 export default function StatusSelect() {
-    const { user, setUser } = useChatContext();
+  const { user, setUserData } = useUser();
 
-    const handleChange = (e) => {
-        setUser({...user, status: e.target.value });
-    };
+  const handleChange = (e) => {
+    if (user) {
+      setUserData(user.name, e.target.value);
+    }
+  };
 
-    return (
-        <select 
-        className="status-select"
-        value={user.status}
-        onChange={(e) => setUser({ ...user, status: e.target.value })}>
-            <option value = "Dostępny">Dostępny</option>
-            <option value = "Zaraz wracam">Zaraz wracam</option>
-            <option value = "Niedostępny">Niedostępny</option>
-            <option value = "Nie przeszkadzać">Nie przeszkadzać</option>
-        </select>
-        
-    );
-    
+  if (!user) return null;
+
+  return (
+    <select 
+      className="status-select"
+      value={user.status}
+      onChange={handleChange}
+    >
+      <option value="Dostępny">Dostępny</option>
+      <option value="Zaraz wracam">Zaraz wracam</option>
+      <option value="Niedostępny">Niedostępny</option>
+      <option value="Nie przeszkadzać">Nie przeszkadzać</option>
+    </select>
+  );
 }

@@ -1,8 +1,16 @@
-$bg-main: #f4f6f9;
-$bg-sidebar: #ffffff;
-$accent: #4a7dfc;
-$text: #1e1e1e;
-$border: #dce1e8;
+/* ===== COLORS ===== */
+$bg: #eef3f9;
+$accent: #4c84ff;
+$accent-light: #e7efff;
+$bot-color: #e9edf3;
+$text-dark: #1b1f23;
+$bg-light: #f4f6fa;
+$border: #d3d9e5;
 
-$radius: 10px;
+/* ===== SIZING ===== */
+$radius: 16px;
+$radius-small: 10px;
+$radius-medium: 14px;
+
+/* ===== TRANSITIONS ===== */
 $transition: 0.25s ease;

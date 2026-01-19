@@ -1,0 +1,141 @@
+@import "./variables.scss";
+
+/* ===== MESSAGE INPUT ===== */
+.message-input-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.emoji-picker-wrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.message-input-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  padding: 10px;
+  border-radius: $radius;
+  border: 1px solid $border;
+}
+
+.message-input-container input {
+  flex: 1;
+  padding: 10px;
+  border-radius: $radius;
+  border: 1px solid $border;
+  outline: none;
+  font-size: 14px;
+
+  &:focus {
+    border-color: $accent;
+  }
+}
+
+.send-btn {
+  background: $accent;
+  color: #fff;
+  padding: 10px 18px;
+  border: none;
+  border-radius: $radius;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background $transition;
+
+  &:hover {
+    background: darken($accent, 10%);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+/* ===== EMOJI PICKER ===== */
+.emoji-picker {
+  position: relative;
+  display: inline-block;
+
+  &__toggle {
+    background: #fff;
+    border: 2px solid $accent;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all $transition;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: $accent-light;
+      transform: scale(1.1);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    background: white;
+    border: 2px solid $accent;
+    border-radius: 12px;
+    padding: 10px;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-height: 250px;
+    overflow-y: auto;
+    min-width: 240px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+
+  &__emoji {
+    background: none;
+    border: 1px solid $border;
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: $accent-light;
+      border-color: $accent;
+      transform: scale(1.2);
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+
+  &__status {
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    color: #666;
+
+    &--error {
+      color: #d32f2f;
+    }
+  }
+}
