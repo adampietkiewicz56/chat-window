@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react";
 const ChatContext = createContext();
 
 export function ChatProvider({ children }) {
-  // ✅ USER: null = niezalogowany
+  // user: null
   const [user, setUser] = useState(() => {
     const storedName = localStorage.getItem("username");
     return storedName
@@ -22,7 +22,7 @@ export function ChatProvider({ children }) {
   const [currentContact, setCurrentContact] = useState(1);
 
   const [messages, setMessages] = useState({
-    1: [],
+    1: [], // bot
   });
 
   const addContact = (name) => {
@@ -32,6 +32,7 @@ export function ChatProvider({ children }) {
   };
 
   const addMessage = (contactId, text, edited = false) => {
+    console.log(localStorage.getItem("username"), " wysłał wiadomość", text)
     const timestamp = new Date().toLocaleTimeString();
     setMessages((prev) => ({
       ...prev,
@@ -76,6 +77,7 @@ export function ChatProvider({ children }) {
 
   // Logout
   const logout = () => {
+    console.log("Wylogowano");
     localStorage.removeItem("username");
     setUser(null);
   };

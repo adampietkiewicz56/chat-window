@@ -5,12 +5,17 @@ export default function ContactList() {
   const { contacts, currentContact, setCurrentContact, addContact } =
     useChatContext();
   const [newContact, setNewContact] = useState("");
+  const [error, setError] = useState("");
 
   const handleAdd = (e) => {
     e.preventDefault();
-    if (!newContact.trim()) return;
+    if (!newContact.trim()) {
+      setError("Podaj nazwę kontaktu")
+      return;
+    }
     addContact(newContact);
     setNewContact("");
+    setError("");
   };
 
   return (
@@ -41,6 +46,7 @@ export default function ContactList() {
           value={newContact}
           onChange={(e) => setNewContact(e.target.value)}
         />
+        {error && <small className="error">{error}</small>}
         <button type="submit">+</button>
       </form>
     </div>

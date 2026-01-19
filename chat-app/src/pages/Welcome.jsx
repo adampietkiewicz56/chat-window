@@ -4,13 +4,14 @@ import { useChatContext } from "../context/ChatContext";
 
 export default function Welcome() {
   const [name, setName] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const { setUser } = useChatContext();
 
   useEffect(() => {
     const savedName = localStorage.getItem("username");
     if (savedName) {
-      // 🔹 jeżeli ktoś odświeży stronę
+      // po odswiezeniu strony
       setUser({ name: savedName, status: "Dostępny" });
       navigate("/chat");
     }
@@ -18,14 +19,20 @@ export default function Welcome() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name.trim()) return;
+    if (!name.trim()) {
+      setError("Musisz podać nazwę użytkownika.");
+      
+      return;
+    }
+
+  
 
     const trimmedName = name.trim();
 
-    // 🔹 zapis trwały
+    // zapis trwaly
     localStorage.setItem("username", trimmedName);
 
-    // 🔹 zapis do stanu aplikacji (KLUCZ!)
+    // zapis do stany aplikacji
     setUser({ name: trimmedName, status: "Dostępny" });
 
     navigate("/chat");
@@ -35,6 +42,7 @@ export default function Welcome() {
     <div className="welcome-page">
         <div className="welcome-card">
         <h1>Wybierz swoją nazwę użytkownika</h1>
+        
 
         <form onSubmit={handleSubmit}>
             <input
@@ -43,6 +51,7 @@ export default function Welcome() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             />
+            {error && <p className="error">{error}</p>}
             <button type="submit">Start</button>
         </form>
         </div>

@@ -17,5 +17,7 @@ export default function StatusSelect() {
             <option value = "Niedostępny">Niedostępny</option>
             <option value = "Nie przeszkadzać">Nie przeszkadzać</option>
         </select>
+        
     );
+    
 }
