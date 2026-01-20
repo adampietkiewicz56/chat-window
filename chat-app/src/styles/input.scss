@@ -16,7 +16,7 @@
 .message-input-container {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   background: #fff;
   padding: 10px;
   border-radius: $radius;
@@ -61,38 +61,40 @@
   display: inline-block;
 
   &__toggle {
-    background: #fff;
-    border: 2px solid $accent;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+    background: #f5f7fa;
+    border: none;
+    border-radius: 10px;
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
     cursor: pointer;
     transition: all $transition;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #333;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
 
     &:hover {
-      background-color: $accent-light;
-      transform: scale(1.1);
+      background-color: lighten($accent-light, 8%);
+      transform: translateY(-1px);
     }
 
     &:active {
-      transform: scale(0.95);
+      transform: scale(0.97);
     }
   }
 
   &__dropdown {
     position: absolute;
-    bottom: 50px;
+    bottom: 44px;
     left: 0;
     background: white;
-    border: 2px solid $accent;
+    border: 1px solid $border;
     border-radius: 12px;
     padding: 10px;
     z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
     max-height: 250px;
     overflow-y: auto;
     min-width: 240px;
@@ -120,11 +122,11 @@
     &:hover {
       background-color: $accent-light;
       border-color: $accent;
-      transform: scale(1.2);
+      transform: scale(1.06);
     }
 
     &:active {
-      transform: scale(0.9);
+      transform: scale(0.98);
     }
   }
 

@@ -59,9 +59,11 @@ export default function Conversation() {
                 <span>{m.text}</span>
               )}
             </div>
-
-            {settings.showTime && <small>{m.time}</small>}
-            {m.edited && <small> (edytowano)</small>}
+            {settings.showTime && <small className="message-time">{m.time}</small>}
+            {m.edited && <small className="message-time"> (edytowano)</small>}
+            {m.from === "me" && (
+              <small className="message-edit-hint">Kliknij wiadomość, aby edytować</small>
+            )}
           </div>
         ))}
       </div>

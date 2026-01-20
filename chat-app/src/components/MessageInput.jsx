@@ -26,10 +26,6 @@ export default function MessageInput() {
 
   return (
     <form className="message-input-form" onSubmit={send}>
-      <div className="emoji-picker-wrapper">
-        <EmojiPicker onEmojiSelect={handleEmojiSelect} />
-      </div>
-
       <div className="message-input-container">
         <input
           type="text"
@@ -37,9 +33,10 @@ export default function MessageInput() {
           onChange={(e) => setText(e.target.value)}
           placeholder="Napisz wiadomość..."
         />
-        {error && <small className="error">{error}</small>}
+        <EmojiPicker onEmojiSelect={handleEmojiSelect} />
         <button className="send-btn">Wyślij</button>
       </div>
+      {error && <small className="error">{error}</small>}
     </form>
   );
 }

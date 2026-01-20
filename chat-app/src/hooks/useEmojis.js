@@ -23,7 +23,7 @@ export const useEmojis = () => {
         }));
         setEmojis(emojiList);
       } catch (err) {
-        // Fallback - popularne emoji
+        // w przypadku errora
         const fallbackEmojis = [
           { emoji: '😀', name: 'grinning' },
           { emoji: '😂', name: 'joy' },
