@@ -9,6 +9,7 @@ export default function App() {
     <ChatProvider>
       <Router>
         <Routes>
+          
           <Route path="/" element={<Welcome />} />
 
           <Route
